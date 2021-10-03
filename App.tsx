@@ -1,12 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { DefaultTheme } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Theme } from 'react-native-paper/src/types';
+import { CardView } from './src/components';
+
+const theme: Theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    accent: '#f1c40f'
+  }
+};
+
+const trip1 = {
+  title: 'welcome to typescript',
+  description: '',
+  imageUri: null,
+};
 
 const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Hello World! Welcome to my app.</Text>
-    </View>
+    <PaperProvider theme={theme}>
+      <View style={styles.container}>
+        <CardView {...trip1}/>
+      </View>
+    </PaperProvider>
   );
 };
 
